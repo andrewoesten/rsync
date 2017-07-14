@@ -6,9 +6,9 @@ exec_prefix=${prefix}
 bindir=${exec_prefix}/bin
 mandir=${prefix}/man
 
-LIBS=-mcrt=ixemul 
+LIBS=-noixemul -lsocket
 CC=/opt/m68k-amigaos/bin/m68k-amigaos-gcc
-CFLAGS=-g -O2 -DHAVE_CONFIG_H -Wall -W -I./popt
+CFLAGS=-Os -DHAVE_CONFIG_H -Wall -W -I./popt
 LDFLAGS=
 
 

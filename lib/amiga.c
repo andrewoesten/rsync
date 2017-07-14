@@ -10,5 +10,12 @@ __eprintf (format, file, line, expression)
 {
   (void) printf (stderr, format, file, line, expression);
   abort ();
-  /*NOTREACHED*/
+  /* NOTREACHED */
+}
+
+mode_t
+umask(mode_t mode)
+{
+    // @todo Not supported without multiuser.library or usergroup.library - just return default mask
+    return 022;
 }

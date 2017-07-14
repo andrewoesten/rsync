@@ -34,14 +34,8 @@ Set a fd into nonblocking mode
 ****************************************************************************/
 void set_nonblocking(int fd)
 {
-	int val;
-
-	if((val = fcntl(fd, F_GETFL, 0)) == -1)
-		return;
-	if (!(val & NONBLOCK_FLAG)) {
-		val |= NONBLOCK_FLAG;
-		fcntl(fd, F_SETFL, val);
-	}
+    int arg = 0;
+    ioctl(fd, FIONBIO, &arg);
 }
 
 #ifndef NOSHELLORSERVER
@@ -50,14 +44,8 @@ Set a fd into blocking mode
 ****************************************************************************/
 void set_blocking(int fd)
 {
-	int val;
-
-	if((val = fcntl(fd, F_GETFL, 0)) == -1)
-		return;
-	if (val & NONBLOCK_FLAG) {
-		val &= ~NONBLOCK_FLAG;
-		fcntl(fd, F_SETFL, val);
-	}
+    int arg = 1;
+    ioctl(fd, FIONBIO, &arg);
 }
 
 
@@ -575,7 +563,9 @@ int lock_range(int fd, int offset, int len)
 	lock.l_len = len;
 	lock.l_pid = 0;
 	
-	return fcntl(fd,F_SETLK,&lock) == 0;
+	//return fcntl(fd,F_SETLK,&lock) == 0;
+    // Never used
+    return 1;
 }
 
 

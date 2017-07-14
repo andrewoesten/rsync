@@ -479,13 +479,13 @@ int parse_arguments(int *argc, const char ***argv, int frommain)
 {
 	int opt;
 	char *ref = lp_refuse_options(module_id);
-        poptContext pc;
+    poptContext pc;
 
-        /* TODO: Call poptReadDefaultConfig; handle errors. */
+    /* TODO: Call poptReadDefaultConfig; handle errors. */
 
-        /* The context leaks in case of an error, but if there's a
-         * problem we always exit anyhow. */
-        pc = poptGetContext(RSYNC_NAME, *argc, *argv, long_options, 0);
+    /* The context leaks in case of an error, but if there's a
+     * problem we always exit anyhow. */
+    pc = poptGetContext(RSYNC_NAME, *argc, *argv, long_options, POPT_CONTEXT_NO_EXEC);
 
 	while ((opt = poptGetNextOpt(pc)) != -1) {
 		if (ref) {

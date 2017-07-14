@@ -267,7 +267,7 @@ static void execCommand(poptContext con) {
 #endif
 #endif
 
-    execvp(argv[0], (char *const *)argv);
+    //execvp(argv[0], (char *const *)argv);
 }
 
 /*@observer@*/ static const struct poptOption *

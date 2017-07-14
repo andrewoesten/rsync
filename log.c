@@ -187,9 +187,9 @@ void log_init(void)
 #endif
 
 #ifdef LOG_DAEMON
-	openlog("rsyncd", options, lp_syslog_facility());
+	//openlog("rsyncd", options, lp_syslog_facility());
 #else
-	openlog("rsyncd", options);
+	//openlog("rsyncd", options);
 #endif
 
 #ifndef LOG_NDELAY

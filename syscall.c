@@ -43,7 +43,7 @@ int do_symlink(char *fname1, char *fname2)
 {
 	if (dry_run) return 0;
 	CHECK_RO
-	return symlink(fname1, fname2);
+	return 0;//symlink(fname1, fname2);
 }
 
 #if HAVE_LINK
@@ -51,7 +51,7 @@ int do_link(char *fname1, char *fname2)
 {
 	if (dry_run) return 0;
 	CHECK_RO
-	return link(fname1, fname2);
+	return 0;//link(fname1, fname2);
 }
 #endif
 
@@ -59,7 +59,7 @@ int do_lchown(const char *path, uid_t owner, gid_t group)
 {
 	if (dry_run) return 0;
 	CHECK_RO
-	return lchown(path, owner, group);
+	return 0;//lchown(path, owner, group);
 }
 
 #if HAVE_MKNOD
@@ -67,7 +67,7 @@ int do_mknod(char *pathname, mode_t mode, dev_t dev)
 {
 	if (dry_run) return 0;
 	CHECK_RO
-	return mknod(pathname, mode, dev);
+	return 0;//mknod(pathname, mode, dev);
 }
 #endif
 
@@ -146,7 +146,7 @@ int do_mkstemp(char *template, mode_t perms)
 	if (dry_run) return -1;
 	if (read_only) {errno = EROFS; return -1;}
 
-#if defined(HAVE_SECURE_MKSTEMP) && defined(HAVE_FCHMOD)
+/*#if defined(HAVE_SECURE_MKSTEMP) && defined(HAVE_FCHMOD)
 	{
 		int fd = mkstemp(template);
 		if (fd == -1) return -1;
@@ -157,10 +157,10 @@ int do_mkstemp(char *template, mode_t perms)
 		}
 		return fd;
 	}
-#else
+#else*/
 	if (!mktemp(template)) return -1;
 	return do_open(template, O_RDWR|O_EXCL|O_CREAT, perms);
-#endif
+//#endif
 }
 
 int do_stat(const char *fname, STRUCT_STAT *st)
