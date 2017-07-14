@@ -64,7 +64,8 @@
 #define HAVE_FCNTL_H 1
 
 /* */
-#define HAVE_FNMATCH 1
+//#define HAVE_FNMATCH 1
+#undef HAVE_FNMATCH
 
 /* Define if you have the `fstat' function. */
 #define HAVE_FSTAT 1

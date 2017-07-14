@@ -1,0 +1,7 @@
+*.o
+autom4te.cache
+config.log
+config.status
+dummy
+rsync
+shconfig

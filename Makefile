@@ -1,18 +1,19 @@
 # Makefile for rsync. This is processed by configure to produce the final
 # Makefile
 
-prefix=/usr/local
+prefix=/opt/rsync-amiga
 exec_prefix=${prefix}
 bindir=${exec_prefix}/bin
 mandir=${prefix}/man
 
-LIBS=
-CC=gcc
+LIBS=-mcrt=ixemul 
+CC=/opt/m68k-amigaos/bin/m68k-amigaos-gcc
 CFLAGS=-g -O2 -DHAVE_CONFIG_H -Wall -W -I./popt
 LDFLAGS=
 
-INSTALLCMD=/bin/install -c
-INSTALLMAN=/bin/install -c
+
+INSTALLCMD=/usr/bin/install -c
+INSTALLMAN=/usr/bin/install -c
 
 srcdir=.
 
@@ -32,10 +33,11 @@ ZLIBOBJ=zlib/deflate.o zlib/infblock.o zlib/infcodes.o zlib/inffast.o \
 OBJS1=rsync.o generator.o receiver.o cleanup.o sender.o exclude.o util.o main.o checksum.o match.o syscall.o log.o backup.o
 OBJS2=options.o flist.o io.o compat.o hlink.o token.o uidlist.o socket.o fileio.o batch.o \
 	clientname.o
+AMIGA_OBJ = lib/amiga.o
 DAEMON_OBJ = params.o loadparm.o clientserver.o access.o connection.o authenticate.o
 popt_OBJS=popt/findme.o  popt/popt.o  popt/poptconfig.o \
 	popt/popthelp.o popt/poptparse.o
-OBJS=$(OBJS1) $(OBJS2) $(DAEMON_OBJ) $(LIBOBJ) $(ZLIBOBJ) $(popt_OBJS)
+OBJS=$(OBJS1) $(OBJS2) $(AMIGA_OBJ) $(DAEMON_OBJ) $(LIBOBJ) $(ZLIBOBJ) $(popt_OBJS)
 
 TLS_OBJ = tls.o syscall.o lib/permstring.o 
 
